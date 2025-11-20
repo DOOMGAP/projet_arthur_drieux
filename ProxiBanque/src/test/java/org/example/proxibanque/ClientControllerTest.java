@@ -47,7 +47,7 @@ public class ClientControllerTest {
         client.setAdresse("1 Rue A");
         client.setTelephone("0102030405");
 
-        mockMvc.perform(post("/clients/conseiller/" + conseillerId)
+        mockMvc.perform(post("/clients/conseiller/{id}", conseillerId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(client)))
                 .andExpect(status().isOk())
@@ -57,8 +57,7 @@ public class ClientControllerTest {
 
     @Test
     void testGetClientsByConseiller() throws Exception {
-        mockMvc.perform(get("/clients/conseiller/" + conseillerId))
+        mockMvc.perform(get("/clients/conseiller/{id}", conseillerId))
                 .andExpect(status().isOk());
     }
 }
-

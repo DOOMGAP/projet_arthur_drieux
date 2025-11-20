@@ -19,7 +19,6 @@ public class ClientServiceImpl implements ClientService {
     public Client create(Client client, Long conseillerId) {
         var conseiller = conseillerRepo.findById(conseillerId)
                 .orElseThrow(() -> new RuntimeException("Conseiller not found"));
-
         client.setConseiller(conseiller);
         return clientRepo.save(client);
     }
@@ -31,5 +30,9 @@ public class ClientServiceImpl implements ClientService {
                 .filter(c -> c.getConseiller().getId().equals(conseillerId))
                 .toList();
     }
-}
 
+    @Override
+    public List<Client> findAll() {
+        return clientRepo.findAll();
+    }
+}
