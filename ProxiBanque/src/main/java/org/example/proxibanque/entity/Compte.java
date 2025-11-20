@@ -1,6 +1,6 @@
 package org.example.proxibanque.entity;
 
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +23,12 @@ public abstract class Compte {
     private LocalDate dateOuverture = LocalDate.now();
 
     @ManyToOne
+    @JsonBackReference
     private Client client;
+
+    public Compte(String numeroCompte) {
+        this.numeroCompte = numeroCompte;
+    }
 
     public Compte(String numeroCompte, Client client) {
         this.numeroCompte = numeroCompte;

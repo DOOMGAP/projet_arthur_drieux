@@ -13,7 +13,11 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class CompteEpargne extends Compte {
 
-    private BigDecimal tauxRemuneration = new BigDecimal("0.03"); // 3% par défaut
+    private BigDecimal tauxRemuneration = new BigDecimal("0.03");
+
+    public CompteEpargne(String numeroCompte) {
+        super(numeroCompte);
+    }
 
     public CompteEpargne(String numeroCompte, Client client) {
         super(numeroCompte, client);
@@ -24,7 +28,6 @@ public class CompteEpargne extends Compte {
         this.tauxRemuneration = tauxRemuneration;
     }
 
-    // Méthode pour calculer les intérêts annuels
     public BigDecimal calculerInteretsAnnuels() {
         return getSolde().multiply(tauxRemuneration);
     }

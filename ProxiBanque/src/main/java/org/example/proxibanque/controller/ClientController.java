@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/clients") // Note: c'est "/clients" pas "/api/clients"
+@RequestMapping("/clients")
 public class ClientController {
 
     private final ClientService service;
@@ -24,7 +24,6 @@ public class ClientController {
         return service.findByConseiller(id);
     }
 
-    // Ajoute un endpoint pour récupérer tous les clients
     @GetMapping
     public List<Client> getAllClients() {
         return service.findAll();

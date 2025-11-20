@@ -33,6 +33,12 @@ public class CompteController {
         return service.findById(id);
     }
 
+    public List<Compte> getAllComptes() {
+        return service.findAll();
+    }
+
+
+    
     @GetMapping("/client/{clientId}")
     public List<Compte> getComptesByClient(@PathVariable Long clientId) {
         return service.findByClient(clientId);

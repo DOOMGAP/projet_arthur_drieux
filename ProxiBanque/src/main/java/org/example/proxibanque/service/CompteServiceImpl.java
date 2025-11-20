@@ -34,6 +34,11 @@ public class CompteServiceImpl implements CompteService {
     }
 
     @Override
+    public List<Compte> findAll() {
+        return compteRepo.findAll();
+    }
+
+    @Override
     @Transactional
     public CompteEpargne createCompteEpargne(CompteEpargne compteEpargne, Long clientId) {
         Client client = clientRepo.findById(clientId)
@@ -72,7 +77,6 @@ public class CompteServiceImpl implements CompteService {
         Compte destination = compteRepo.findById(compteDestId)
                 .orElseThrow(() -> new RuntimeException("Compte destination non trouvé"));
 
-        // Vérifier les fonds pour le compte courant
         if (source instanceof CompteCourant compteCourant) {
             if (!compteCourant.peutRetirer(montant)) {
                 throw new RuntimeException("Fonds insuffisants pour effectuer le virement");
@@ -81,7 +85,6 @@ public class CompteServiceImpl implements CompteService {
             throw new RuntimeException("Fonds insuffisants pour effectuer le virement");
         }
 
-        // Effectuer le virement
         source.setSolde(source.getSolde().subtract(montant));
         destination.setSolde(destination.getSolde().add(montant));
 

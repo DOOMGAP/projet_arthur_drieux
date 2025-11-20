@@ -1,5 +1,7 @@
 package org.example.proxibanque.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,5 +21,10 @@ public class Conseiller {
     private String prenom;
 
     @OneToMany(mappedBy = "conseiller", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Client> clients;
+
+    @ManyToOne
+    @JsonBackReference
+    private Agence agence;
 }

@@ -15,6 +15,10 @@ public class CompteCourant extends Compte {
 
     private BigDecimal autorisationDecouvert = new BigDecimal("1000.00");
 
+    public CompteCourant(String numeroCompte) {
+        super(numeroCompte);
+    }
+
     public CompteCourant(String numeroCompte, Client client) {
         super(numeroCompte, client);
     }
@@ -24,7 +28,6 @@ public class CompteCourant extends Compte {
         this.autorisationDecouvert = autorisationDecouvert;
     }
 
-    // Méthode pour vérifier si un retrait est possible
     public boolean peutRetirer(BigDecimal montant) {
         BigDecimal soldeApresRetrait = getSolde().subtract(montant);
         return soldeApresRetrait.compareTo(autorisationDecouvert.negate()) >= 0;
