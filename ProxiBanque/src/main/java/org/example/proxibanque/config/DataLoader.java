@@ -19,14 +19,12 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Nettoyer la base d'abord
         System.out.println("=== NETTOYAGE DE LA BASE DE DONNÉES ===");
         compteRepo.deleteAll();
         clientRepo.deleteAll();
         conseillerRepo.deleteAll();
         agenceRepo.deleteAll();
 
-        // Petite pause pour être sûr que tout est nettoyé
         Thread.sleep(100);
 
         System.out.println("=== CRÉATION DES NOUVELLES DONNÉES ===");

@@ -38,7 +38,7 @@ public class CompteController {
     }
 
 
-    
+
     @GetMapping("/client/{clientId}")
     public List<Compte> getComptesByClient(@PathVariable Long clientId) {
         return service.findByClient(clientId);
